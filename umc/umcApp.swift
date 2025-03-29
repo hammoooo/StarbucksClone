@@ -1,9 +1,4 @@
-//
-//  umcApp.swift
-//  umc
-//
-//  Created by json on 3/26/25.
-//
+
 
 import SwiftUI
 
@@ -11,8 +6,8 @@ import SwiftUI
 struct umcApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashView()
-            //ContentView()
+            OtherView()
+            TabView()
         }
     }
 }

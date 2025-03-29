@@ -11,7 +11,7 @@ struct ContentView: View {
             Spacer()
             VStack(alignment: .leading, spacing: 20){
                 // Starbucks Logo
-                Image("starbucsLogo")
+                Image("starbucks")
                     .frame(width: 100, height: 100)
                 
                 
