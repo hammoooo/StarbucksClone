@@ -6,7 +6,7 @@ import SwiftUI
 struct umcApp: App {
     var body: some Scene {
         WindowGroup {
-            OtherView()
+            LoginView(id: .constant(""), pwd: .constant(""))
             TabView()
         }
     }

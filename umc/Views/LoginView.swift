@@ -2,13 +2,14 @@ import SwiftUI
 
 struct LoginView: View {
     @Binding var id: String
-      @Binding var pwd: String
+    @Binding var pwd: String
+
+    @State private var showSignUp = false
+    @FocusState private var focusedField: Field?
     
     enum Field {
         case userId, password
     }
-    
-    @FocusState private var focusedField: Field?
     
     var body: some View {
         VStack(spacing: 20) {
@@ -32,7 +33,6 @@ struct LoginView: View {
             .padding(.leading, 10)
             .padding(.bottom, 130)
             
-            // 아이디 입력 필드
             VStack(alignment: .leading, spacing: 10) {
                 Text("아이디")
                     .font(.caption)
@@ -48,8 +48,7 @@ struct LoginView: View {
                         alignment: .bottom
                     )
             }
-            
-            // 비밀번호 입력 필드
+
             VStack(alignment: .leading, spacing: 8) {
                 Text("비밀번호")
                     .font(.caption)
@@ -67,28 +66,54 @@ struct LoginView: View {
             }
         }
         .padding(.horizontal, 30)
-        
-        // 하단 버튼
+
         VStack(spacing: 20) {
-            Text("이메일로 회원가입하기")
-                .font(.system(size: 12))
-                .foregroundColor(.gray)
-                .underline()
-                .onTapGesture {
-                    print("Text clicked!")
-                }
-                .padding(.vertical, 30)
-                .padding(.top, 30)
+            NavigationLink(destination: SignupView(), isActive: $showSignUp) {
+                EmptyView()
+            }
+
+            Button {
+                showSignUp = true
+            } label: {
+                Text("이메일로 회원가입하기")
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+                    .underline()
+            }
+            .padding(.vertical, 30)
+            .padding(.top, 30)
             
+     
+            NavigationStack {
+                NavigationLink(destination: SignupView()){
+                    Button {
+                     
+                    } label: {
+                        Text("이메일로 회원가입하기")
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                            .underline()
+                    }
+                    .padding(.vertical, 30)
+                    .padding(.top, 30)
+                }
+            }
+            
+
+         
+            
+     
+
             Image("kakaologin")
             Image("applelogin")
         }
         .padding(.horizontal, 30)
-        
+
         Spacer()
     }
 }
 
-//#Preview {
-//    LoginView()
-//}
+
+#Preview {
+    LoginView(id: .constant(""), pwd: .constant(""))
+}

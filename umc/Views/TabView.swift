@@ -97,7 +97,7 @@ struct TabBarItem: View {
 }
 
 // 예시 뷰들
-struct HomeView: View {
+struct Home2View: View {
     var body: some View {
         Text("Home Screen")
             .font(.largeTitle)
