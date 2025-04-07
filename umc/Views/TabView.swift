@@ -118,7 +118,7 @@ struct OrderView: View {
     }
 }
 
-struct ShopView: View {
+struct Shop2View: View {
     var body: some View {
         Text("Shop Screen")
             .font(.largeTitle)

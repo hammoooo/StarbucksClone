@@ -9,12 +9,22 @@ struct HomeView: View {
     
     
     @State private var showBanner: Bool = false
-    
+    @State private var showAdPopup = true
     
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 24) {
+                    
+                    
+                    // MARK: 광고 팝업
+                    if showAdPopup {
+                        BannerView(showAdPopup: $showAdPopup)
+                                      .transition(.scale.combined(with: .opacity))
+                                      .zIndex(1)
+                              }
+                    
+                    
                     
                     // MARK: 상단 배너 (ZStack 예시)
                     ZStack(alignment: .topLeading) {
@@ -194,6 +204,17 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                     }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             }
         }

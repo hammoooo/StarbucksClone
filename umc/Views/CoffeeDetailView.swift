@@ -1,8 +1,11 @@
+
+
 import SwiftUI
 
 /// 커피 상세 뷰 (재사용 가능)
 /// - `coffee` 파라미터로 어떤 커피인지 정보를 받아와 화면에 표시
 struct CoffeeDetailView: View {
+    
     @Environment(\.dismiss) private var dismiss  // 뒤로가기
     let coffee: CoffeeMenuItem
     
@@ -79,36 +82,36 @@ struct CoffeeDetailView: View {
         }
         // 상단 네비게이션
         .navigationBarBackButtonHidden(true) // 기본 BackButton 숨기기
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss() // 이전 화면 POP
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.black)
-                }
-            }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                // 아무 기능 없는 버튼 (추후 사용)
-                Button {
-                    // 나중에 활용할 액션
-                } label: {
-                    Image(systemName: "square.and.arrow.up") // 공유 아이콘
-                }
-            }
-        }
-        .onAppear {
-            // 화면 뜰 때 초기 선택옵션 설정
-            // - 여러 옵션이 있으면 HOT 우선
-            // - 혹은 첫 번째 availableTemperatures를 선택
-            withAnimation {
-                if coffee.availableTemperatures.contains(.hot) {
-                    selectedTemp = .hot
-                } else {
-                    selectedTemp = coffee.availableTemperatures.first
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                Button {
+//                    dismiss() // 이전 화면 POP
+//                } label: {
+//                    Image(systemName: "chevron.left")
+//                        .foregroundColor(.black)
+//                }
+//            }
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                // 아무 기능 없는 버튼 (추후 사용)
+//                Button {
+//                    // 나중에 활용할 액션
+//                } label: {
+//                    Image(systemName: "square.and.arrow.up") // 공유 아이콘
+//                }
+//            }
+//        }
+//        .onAppear {
+//            // 화면 뜰 때 초기 선택옵션 설정
+//            // - 여러 옵션이 있으면 HOT 우선
+//            // - 혹은 첫 번째 availableTemperatures를 선택
+//            withAnimation {
+//                if coffee.availableTemperatures.contains(.hot) {
+//                    selectedTemp = .hot
+//                } else {
+//                    selectedTemp = coffee.availableTemperatures.first
+//                }
+//            }
+//        }
     }
 }
 

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct BannerView: View {
+    @Binding var showAdPopup: Bool
+    
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -13,6 +15,7 @@ struct BannerView: View {
             VStack(spacing: 12) {
                 Button(action: {
                     print("자세히 보기")
+                    showAdPopup = false
                 }) {
                     Text("자세히 보기")
                         .frame(maxWidth: .infinity)
@@ -24,6 +27,7 @@ struct BannerView: View {
                 }
               
                 Button(action: {
+                    showAdPopup = false
                     dismiss()
                 }) {
                     
@@ -33,6 +37,7 @@ struct BannerView: View {
                         Text("X 닫기")
                             .foregroundColor(.gray)
                             .font(.subheadline)
+                    
                     
                 }
                
@@ -46,6 +51,6 @@ struct BannerView: View {
 
 
 #Preview {
-    BannerView()
+    //BannerView(showAdPopup: true)
 }
 
