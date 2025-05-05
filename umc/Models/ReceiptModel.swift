@@ -1,34 +1,28 @@
-import SwiftUI
 import SwiftData
+import Foundation
 
 @Model
-final class Receipt {
-    let id: UUID
+class Receipt {
+    var id: UUID
     var storeName: String
-    var purchaseDate: Date
+    var date: Date
     var totalPrice: Double
     
-    // 1:1 관계로 연결 (이미지)
+    // 1:1 관계로 영수증 이미지를 담을 수 있도록 (ReceiptImage와 연결)
+    @Relationship(.hasOne, inverse: \.receipt)
     var receiptImage: ReceiptImage?
     
-    init(storeName: String,
-         purchaseDate: Date,
-         totalPrice: Double,
-         receiptImage: ReceiptImage? = nil) {
-        self.id = UUID()
+    init(
+        id: UUID = UUID(),
+        storeName: String = "",
+        date: Date = Date(),
+        totalPrice: Double = 0.0,
+        receiptImage: ReceiptImage? = nil
+    ) {
+        self.id = id
         self.storeName = storeName
-        self.purchaseDate = purchaseDate
+        self.date = date
         self.totalPrice = totalPrice
         self.receiptImage = receiptImage
     }
 }
-
-@Model
-final class ReceiptImage {
-    var imageData: Data
-    
-    init(imageData: Data) {
-        self.imageData = imageData
-    }
-}
-

@@ -3,58 +3,41 @@ import SwiftData
 
 @MainActor
 class ReceiptViewModel: ObservableObject {
-    @Published var receipts: [Receipt] = []
     
-    private var modelContext: ModelContext
+    @Environment(\.modelContext) var context
     
-    init(modelContext: ModelContext) {
-        self.modelContext = modelContext
-        fetchReceipts()
-    }
-    
-    // SwiftData에서 Receipt 전체 목록 불러오기
-    func fetchReceipts() {
-        do {
-            // 가장 단순한 FetchDescriptor (조건 x)
-            let fetchDescriptor = FetchDescriptor<Receipt>()
-            receipts = try modelContext.fetch(fetchDescriptor)
-        } catch {
-            print("Error fetching receipts: \(error)")
-        }
-    }
-    
-    // 새 영수증 추가
-    func addReceipt(storeName: String, date: Date, price: Double, imageData: Data?) {
+    // 새 영수증 생성 함수
+    func addReceipt(storeName: String, date: Date, totalPrice: Double, imageData: Data?) {
+        // 새로운 Receipt 생성
         let newReceipt = Receipt(
             storeName: storeName,
-            purchaseDate: date,
-            totalPrice: price
+            date: date,
+            totalPrice: totalPrice
         )
-        // 이미지가 있다면 1:1 관계 생성
-        if let data = imageData {
-            let receiptImage = ReceiptImage(imageData: data)
-            newReceipt.receiptImage = receiptImage
-        }
-        modelContext.insert(newReceipt)
         
-        // SwiftData에 저장
+        // 이미지 Data가 있으면 ReceiptImage도 생성해서 연결
+        if let imageData = imageData {
+            let newReceiptImage = ReceiptImage(data: imageData, receipt: newReceipt)
+            newReceipt.receiptImage = newReceiptImage
+        }
+        
+        // SwiftData 컨텍스트에 삽입 후 저장
+        context.insert(newReceipt)
+        
         do {
-            try modelContext.save()
-            // in-memory 목록에도 반영
-            receipts.append(newReceipt)
+            try context.save()
         } catch {
-            print("Error saving new receipt: \(error)")
+            print("Error saving new Receipt: \(error)")
         }
     }
     
-    // 영수증 삭제
+    // 영수증 삭제 함수
     func deleteReceipt(_ receipt: Receipt) {
-        modelContext.delete(receipt)
+        context.delete(receipt)
         do {
-            try modelContext.save()
-            receipts.removeAll { $0.id == receipt.id }
+            try context.save()
         } catch {
-            print("Error deleting receipt: \(error)")
+            print("Error deleting Receipt: \(error)")
         }
     }
 }
