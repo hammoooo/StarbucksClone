@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct OtherView: View {
     @AppStorage("nickname") private var storedNickname: String = ""
     @StateObject private var viewModel = OtherViewModel()
@@ -8,7 +7,7 @@ struct OtherView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
+                VStack(alignment: .center, spacing: 24) {
                     // 환영 메시지
                     VStack(alignment: .leading, spacing: 8) {
                         Text("\(viewModel.nickname) 님")
@@ -28,7 +27,7 @@ struct OtherView: View {
                     .padding(.horizontal)
 
                     // Pay 섹션
-                    SectionHeader(title: "Pay")
+                    SectionHeader(title: "Pay").frame(maxWidth: .infinity, alignment: .leading)
                     VStack(spacing: 8) {
                         HStack {
                             IconTextButton(imageName: "creditcard", title: "스타벅스 카드 등록")
@@ -38,42 +37,50 @@ struct OtherView: View {
                             IconTextButton(imageName: "qrcode", title: "쿠폰 등록")
                             IconTextButton(imageName: "list.bullet.rectangle", title: "쿠폰 히스토리")
                         }
-                    }.padding(.horizontal)
+                    }
+                    .padding(.horizontal)
 
                     Divider().padding(.horizontal)
 
                     // 고객지원 섹션
-                    SectionHeader(title: "고객지원")
+                    SectionHeader(title: "고객지원").frame(maxWidth: .infinity, alignment: .leading)
                     VStack(spacing: 8) {
                         HStack {
                             IconTextButton(imageName: "bag", title: "스토어 케어")
                             IconTextButton(imageName: "waveform", title: "고객의 소리")
                         }
                         HStack {
-                            IconTextButton(imageName: "location", title: "매장 정보")
+                            NavigationLink {
+                                StoreMapView()
+                            } label: {
+                                IconTextButton(imageName: "location", title: "매장 정보")
+                            }
                             IconTextButton(imageName: "arrow.2.squarepath", title: "반납기 정보")
                         }
                         IconTextButton(imageName: "doc.plaintext", title: "마이 스타벅스 리뷰")
                     }
                     .padding(.horizontal)
                 }
-                .padding(.top).background(Color.gray.opacity(0.05))
+                .padding(.top)
+                .background(Color.gray.opacity(0.05))
             }
             .navigationTitle("Other")
-            //.navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        print("로그아웃")
-//                    }) {
-//                        Image(systemName: "door.right.hand.open")
-//                            .imageScale(.large)
-//                    }
-//                }
-//            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        print("로그아웃")
+                    } label: {
+                        Image(systemName: "door.right.hand.open")
+                            .font(.title3)
+                            .foregroundColor(.black) .padding(.top, 90)
+                    }
+                }
+            }
         }
     }
 }
+
+// MARK: - Subviews
 
 struct SectionHeader: View {
     let title: String
@@ -85,9 +92,6 @@ struct SectionHeader: View {
     }
 }
 
-
-
-// 상단 버튼 3개: 별 히스토리, 전자영수증, 나만의 메뉴
 struct TopFeatureButton: View {
     let imageName: String
     let title: String
@@ -114,24 +118,19 @@ struct TopFeatureButton: View {
     }
 }
 
-// Pay / 고객지원 버튼: 아이콘 + 텍스트
 struct IconTextButton: View {
     let imageName: String
     let title: String
 
     var body: some View {
-        Button(action: {
-            print(title)
-        }) {
-            HStack(spacing: 10) {
-                Image(systemName: imageName)
-                    .frame(width: 24, height: 24)
-                Text(title)
-                Spacer()
-            }
-            .padding(.vertical, 6)
-            .foregroundColor(.primary)
+        HStack(spacing: 10) {
+            Image(systemName: imageName)
+                .frame(width: 24, height: 24)
+            Text(title)
+            Spacer()
         }
+        .padding(.vertical, 6)
+        .foregroundColor(.primary)
     }
 }
 

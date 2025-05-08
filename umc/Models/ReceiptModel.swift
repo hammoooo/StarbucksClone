@@ -1,28 +1,18 @@
-import SwiftData
 import Foundation
+import SwiftData
 
-@Model
-class Receipt {
-    var id: UUID
-    var storeName: String
-    var date: Date
-    var totalPrice: Double
-    
-    // 1:1 관계로 영수증 이미지를 담을 수 있도록 (ReceiptImage와 연결)
-    @Relationship(.hasOne, inverse: \.receipt)
-    var receiptImage: ReceiptImage?
-    
-    init(
-        id: UUID = UUID(),
-        storeName: String = "",
-        date: Date = Date(),
-        totalPrice: Double = 0.0,
-        receiptImage: ReceiptImage? = nil
-    ) {
-        self.id = id
+@Model                               
+final class Receipt {
+    @Attribute(.unique) var id: UUID = UUID()
+    var storeName: String                // 매장명
+    var amount: Int                      // 총 사용 금액 (원)
+    var date: Date                       // 결제 일자
+    var imageData: Data?                 // 영수증 원본 이미지 (JPEG)
+
+    init(storeName: String, amount: Int, date: Date, imageData: Data?) {
         self.storeName = storeName
+        self.amount = amount
         self.date = date
-        self.totalPrice = totalPrice
-        self.receiptImage = receiptImage
+        self.imageData = imageData
     }
 }

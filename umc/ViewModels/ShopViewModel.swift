@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - ViewModel
 class ShopViewModel: ObservableObject {
-    // Banner 이미지 리스트 (실제 프로젝트에서는 받아온 URL이나 로컬 이미지 이름 사용)
+    
     let bannerImages = ["shop1", "shop2", "shop3"]
     
     // All Products 더미 데이터 (ShopModel 배열)

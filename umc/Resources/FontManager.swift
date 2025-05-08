@@ -32,10 +32,18 @@ extension Font {
         return .custom(type.value, size: size)
     }
     
-    static var PretendardBold30: Font {
-        return .pretend(type: .bold, size: 30)
+    static func PretendardBold(_ size: CGFloat) -> Font {
+        return .pretend(type: .bold, size: size)
     }
-    
+
+    static func PretendardMedium(_ size: CGFloat) -> Font {
+        return .pretend(type: .medium, size: size)
+    }
+
+    static func PretendardSemiBold(_ size: CGFloat) -> Font {
+        return .pretend(type: .semibold, size: size)
+    }
+
     /* 여기에 더 추가해주세요 */
     
 }
