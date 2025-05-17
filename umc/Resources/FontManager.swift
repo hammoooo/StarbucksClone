@@ -43,6 +43,10 @@ extension Font {
     static func PretendardSemiBold(_ size: CGFloat) -> Font {
         return .pretend(type: .semibold, size: size)
     }
+    
+    static func PretendardRegular(_ size: CGFloat) -> Font {
+        return .pretend(type: .regular, size: size)
+    }
 
     /* 여기에 더 추가해주세요 */
     

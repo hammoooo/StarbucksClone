@@ -7,17 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F58D1D052DD8A281005A3065 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = F58D1D042DD8A281005A3065 /* KakaoSDK */; };
+		F58D1D072DD8A281005A3065 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F58D1D062DD8A281005A3065 /* KakaoSDKAuth */; };
+		F58D1D092DD8A281005A3065 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = F58D1D082DD8A281005A3065 /* KakaoSDKCommon */; };
 		F5F46A622DD1E19800635776 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F5F46A612DD1E19800635776 /* Alamofire */; };
-		F5F46A642DD1E19800635776 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F5F46A632DD1E19800635776 /* AlamofireDynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F5B7C08E2D9441C500447F50 /* umc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = umc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F58D1C662DD89744005A3065 /* Exceptions for "umc" folder in "umc" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F5B7C08D2D9441C500447F50 /* umc */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F5B7C0902D9441C500447F50 /* umc */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F58D1C662DD89744005A3065 /* Exceptions for "umc" folder in "umc" target */,
+			);
 			path = umc;
 			sourceTree = "<group>";
 		};
@@ -29,7 +44,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5F46A622DD1E19800635776 /* Alamofire in Frameworks */,
-				F5F46A642DD1E19800635776 /* AlamofireDynamic in Frameworks */,
+				F58D1D052DD8A281005A3065 /* KakaoSDK in Frameworks */,
+				F58D1D092DD8A281005A3065 /* KakaoSDKCommon in Frameworks */,
+				F58D1D072DD8A281005A3065 /* KakaoSDKAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +90,9 @@
 			name = umc;
 			packageProductDependencies = (
 				F5F46A612DD1E19800635776 /* Alamofire */,
-				F5F46A632DD1E19800635776 /* AlamofireDynamic */,
+				F58D1D042DD8A281005A3065 /* KakaoSDK */,
+				F58D1D062DD8A281005A3065 /* KakaoSDKAuth */,
+				F58D1D082DD8A281005A3065 /* KakaoSDKCommon */,
 			);
 			productName = umc;
 			productReference = F5B7C08E2D9441C500447F50 /* umc.app */;
@@ -105,6 +124,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F5F46A602DD1E19800635776 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F58D1D032DD8A281005A3065 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F5B7C08F2D9441C500447F50 /* Products */;
@@ -139,6 +159,8 @@
 /* Begin XCBuildConfiguration section */
 		F5B7C09B2D9441C600447F50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F5B7C0902D9441C500447F50 /* umc */;
+			baseConfigurationReferenceRelativePath = Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -200,6 +222,8 @@
 		};
 		F5B7C09C2D9441C600447F50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F5B7C0902D9441C500447F50 /* umc */;
+			baseConfigurationReferenceRelativePath = Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -262,6 +286,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umc/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = umc/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -279,7 +304,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.myorganization.umc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -299,6 +324,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"umc/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = umc/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -316,7 +342,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.myorganization.umc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -349,6 +375,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F58D1D032DD8A281005A3065 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.24.2;
+			};
+		};
 		F5F46A602DD1E19800635776 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -360,15 +394,25 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F58D1D042DD8A281005A3065 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F58D1D032DD8A281005A3065 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+		F58D1D062DD8A281005A3065 /* KakaoSDKAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F58D1D032DD8A281005A3065 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKAuth;
+		};
+		F58D1D082DD8A281005A3065 /* KakaoSDKCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F58D1D032DD8A281005A3065 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDKCommon;
+		};
 		F5F46A612DD1E19800635776 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F5F46A602DD1E19800635776 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		F5F46A632DD1E19800635776 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F5F46A602DD1E19800635776 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
